@@ -22,8 +22,8 @@ import RouterContext from "../context/RouterContext";
 import snackbarPosition from "../utils/getSnackbarPosition";
 
 // Meteor.startup(() => {
-//   loadRegisteredBlocks();
-//   loadRegisteredComponents();
+  loadRegisteredBlocks();
+  loadRegisteredComponents();
 
   const apolloClient = initApollo();
 
