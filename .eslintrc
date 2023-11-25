@@ -43,6 +43,12 @@
       }
     ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "node/no-extraneous-import": [
+      "error",
+      {
+        "allowModules": ["prop-types"]
+      }
+    ]
   }
 }

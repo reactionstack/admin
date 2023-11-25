@@ -1,22 +1,23 @@
 import React from "react";
-import { registerOperatorRoute } from "/imports/client/ui";
+// import { registerOperatorRoute } from "/imports/client/ui";
 import TagIcon from "mdi-material-ui/Tag";
+import { registerOperatorRoute } from "../../../../ui";
 
 export { default as DataTable } from "./components/TagDataTable";
-export { default as TagDataTableColumn } from "./components/TagDataTableColumn";
+// export { default as TagDataTableColumn } from "./components/TagDataTableColumn";
 
-import TagFormPage from "./pages/TagFormPageWithData";
+// import TagFormPage from "./pages/TagFormPageWithData";
 import TagSettingsPage from "./pages/TagSettingsPageWithData";
 
-registerOperatorRoute({
-  path: "/tags/create",
-  MainComponent: TagFormPage
-});
+// registerOperatorRoute({
+//   path: "/tags/create",
+//   MainComponent: TagFormPage
+// });
 
-registerOperatorRoute({
-  path: "/tags/edit/:tagId",
-  MainComponent: TagFormPage
-});
+// registerOperatorRoute({
+//   path: "/tags/edit/:tagId",
+//   MainComponent: TagFormPage
+// });
 
 registerOperatorRoute({
   group: "navigation",

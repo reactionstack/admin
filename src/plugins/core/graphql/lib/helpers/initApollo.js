@@ -1,14 +1,15 @@
-import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { HttpLink } from "apollo-link-http";
-import { WebSocketLink } from "apollo-link-ws";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient, InMemoryCache, ApolloLink, HttpLink, split } from "@apollo/client";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
 import { getOperationAST } from "graphql";
-import { Meteor } from "meteor/meteor";
+// import { Meteor } from "meteor/meteor";
 import { accountsLink } from "@accounts/apollo-link";
-import getAccountsHandler from "../../../../../../lib/accountsServer";
+import getAccountsHandler from "../../../../../lib/accountsServer";
 
-const { graphQlApiUrlHttp, graphQlApiUrlWebSocket } = Meteor.settings.public;
+const { graphQlApiUrlHttp, graphQlApiUrlWebSocket } = {
+  graphQlApiUrlHttp: "http://localhost:3000/graphql",
+  graphQlApiUrlWebSocket: "ws://localhost:3000/graphql"
+};
 
 let sharedClient;
 let token;
@@ -29,6 +30,7 @@ export function setAccessToken(value) {
  * @returns {undefined}
  */
 export function setSimpleClientTokenHeader(client) {
+  console.info(token, "============setSimpleClientTokenHeader=============");
   if (token) {
     client.headers({ Authorization: token });
   } else {
@@ -49,20 +51,29 @@ const standardLink = ApolloLink.from([
 let linkWithSubscriptions;
 
 if (graphQlApiUrlWebSocket && graphQlApiUrlWebSocket.length) {
-  linkWithSubscriptions = ApolloLink.split(
+  linkWithSubscriptions = split(
     (operation) => {
       const operationAST = getOperationAST(operation.query, operation.operationName);
       return !!operationAST && operationAST.operation === "subscription";
     },
-    new WebSocketLink({
-      uri: graphQlApiUrlWebSocket,
-      options: {
-        reconnect: true, // auto-reconnect
-        connectionParams: {
-          authToken: localStorage.getItem("accounts:accessToken")
-        }
+
+    new GraphQLWsLink(createClient({
+      url: graphQlApiUrlWebSocket,
+      lazy: true,
+      connectionParams: {
+        authentication: localStorage.getItem("accounts:accessToken")
       }
-    }),
+    })),
+
+    // new WebSocketLink({
+    //   uri: graphQlApiUrlWebSocket,
+    //   options: {
+    //     reconnect: true, // auto-reconnect
+    //     connectionParams: {
+    //       authToken: localStorage.getItem("accounts:accessToken")
+    //     }
+    //   }
+    // }),
     standardLink
   );
 }
@@ -74,7 +85,6 @@ if (graphQlApiUrlWebSocket && graphQlApiUrlWebSocket.length) {
  */
 export default function initApollo() {
   if (sharedClient) return sharedClient;
-
 
   sharedClient = new ApolloClient({
     link: linkWithSubscriptions || standardLink,

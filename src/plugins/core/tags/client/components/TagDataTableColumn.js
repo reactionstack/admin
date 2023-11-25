@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { i18next } from "/client/api";
-import { Components, registerComponent, withMoment } from "@reactioncommerce/reaction-components";
+// import { i18next } from "/client/api";
 import { applyTheme } from "@reactioncommerce/components/utils";
-import colors from "/imports/plugins/core/router/client/theme/colors.js";
+// import colors from "/imports/plugins/core/router/client/theme/colors.js";
 import styled, { css } from "styled-components";
 import CircleIcon from "mdi-material-ui/CheckboxBlankCircle";
+import colors from "../../../../../theme/colors";
+import { Components, registerComponent, withMoment } from "../../../../core/lib";
+import Icon from "../../../../../plugins/core/ui/client/components/icon/icon";
 
 const Cell = styled.div`
   display: flex;
@@ -49,7 +51,7 @@ class TagDataTableColumn extends Component {
     data: PropTypes.object,
     moment: PropTypes.func,
     row: PropTypes.object
-  }
+  };
 
   render() {
     const { row } = this.props;
@@ -60,13 +62,13 @@ class TagDataTableColumn extends Component {
       return (
         <Cell>
           <StatusIcon isVisible={row.value} fontSize="small" />
-          <EnabledLabel>{i18next.t(row.value ? "admin.tags.visible" : "admin.tags.hidden")}</EnabledLabel>
+          <EnabledLabel>{row.value ? "admin.tags.visible" : "admin.tags.hidden"}</EnabledLabel>
         </Cell>
       );
     } else if (renderColumn === "edit") {
       return (
         <CenteredCell>
-          <Components.Icon icon="fa fa-pencil" />
+          <Icon icon="fa fa-pencil" />
         </CenteredCell>
       );
     } else if (renderColumn === "heroMediaUrl") {

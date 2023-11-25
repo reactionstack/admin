@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import PropTypes from "prop-types";
-import { Components, composeWithTracker, registerComponent } from "@reactioncommerce/reaction-components";
-import { Media } from "/imports/plugins/core/files/client";
-import useProduct from "/imports/plugins/included/product-admin/client/hooks/useProduct.js";
+// import { Components, composeWithTracker, registerComponent } from "@reactioncommerce/reaction-components";
+import { Components, composeWithTracker, registerComponent } from "../../../lib";
+// import { Media } from "/imports/plugins/core/files/client";
+
+// import useProduct from "/imports/plugins/included/product-admin/client/hooks/useProduct.js";
 
 /**
  * ShopBrandMediaManager
@@ -11,16 +14,17 @@ import useProduct from "/imports/plugins/included/product-admin/client/hooks/use
  */
 function ShopBrandMediaManager(props) {
   const { afterSetBrandImage, brandMedia, shop } = props;
-  const { refetchProduct } = useProduct();
+  // const { refetchProduct } = useProduct();
 
   if (!shop) return null;
 
-  const selectedMediaId = shop.brandAssets && shop.brandAssets.navbarBrandImageId;
-  const metadata = { type: "brandAsset" };
+  // const selectedMediaId = shop.brandAssets && shop.brandAssets.navbarBrandImageId;
+  // const metadata = { type: "brandAsset" };
 
   return (
     <div>
-      <div className="rui gallery-thumbnails">
+      ShopBrandMediaManager
+      {/* <div className="rui gallery-thumbnails">
         {(brandMedia || []).map((media) => (
           <Components.ShopBrandImageOption
             afterSetBrandImage={afterSetBrandImage}
@@ -30,7 +34,7 @@ function ShopBrandMediaManager(props) {
           />
         ))}
       </div>
-      <Components.MediaUploader canUploadMultiple metadata={metadata} refetchProduct={refetchProduct} shopId={shop._id} />
+      <Components.MediaUploader canUploadMultiple metadata={metadata} refetchProduct={refetchProduct} shopId={shop._id} /> */}
     </div>
   );
 }
@@ -53,12 +57,13 @@ const composer = (props, onData) => {
 
   if (!shop) return;
 
-  const brandMedia = Media.findLocal({
-    "metadata.shopId": shop.internalId,
-    "metadata.type": "brandAsset"
-  });
+  // const brandMedia = Media.findLocal({
+  //   "metadata.shopId": shop.internalId,
+  //   "metadata.type": "brandAsset"
+  // });
 
-  onData(null, { brandMedia });
+  // onData(null, { brandMedia });
+  onData(null, { });
 };
 
 registerComponent("ShopBrandMediaManager", ShopBrandMediaManager, composeWithTracker(composer));

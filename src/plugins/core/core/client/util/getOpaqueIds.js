@@ -1,4 +1,4 @@
-import { Meteor } from "meteor/meteor";
+// import { Meteor } from "meteor/meteor";
 
 const opaqueIdCache = {};
 
@@ -24,18 +24,18 @@ export default function getOpaqueIds(methodInput) {
       return;
     }
 
-    Meteor.call("getOpaqueIdFromInternalId", methodInput, (error, opaqueIds) => {
-      if (error) {
-        reject(error);
-      } else {
-        // Cache results in memory
-        methodInput.forEach(({ namespace, id }, index) => {
-          if (!opaqueIdCache[namespace]) opaqueIdCache[namespace] = {};
-          opaqueIdCache[namespace][id] = opaqueIds[index];
-        });
+    // Meteor.call("getOpaqueIdFromInternalId", methodInput, (error, opaqueIds) => {
+    //   if (error) {
+    //     reject(error);
+    //   } else {
+    //     // Cache results in memory
+    //     methodInput.forEach(({ namespace, id }, index) => {
+    //       if (!opaqueIdCache[namespace]) opaqueIdCache[namespace] = {};
+    //       opaqueIdCache[namespace][id] = opaqueIds[index];
+    //     });
 
-        resolve(opaqueIds);
-      }
-    });
+    //     resolve(opaqueIds);
+    //   }
+    // });
   });
 }

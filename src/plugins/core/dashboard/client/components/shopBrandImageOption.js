@@ -1,14 +1,22 @@
 import React from "react";
 import gql from "graphql-tag";
 import PropTypes from "prop-types";
-import { Meteor } from "meteor/meteor";
+// import { Meteor } from "meteor/meteor";
 import { useMutation } from "@apollo/react-hooks";
-import { Components, registerComponent } from "@reactioncommerce/reaction-components";
+// import { Components, registerComponent } from "@reactioncommerce/reaction-components";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Logger from "/client/modules/logger";
-import { i18next } from "/client/api";
-import getOpaqueIds from "/imports/plugins/core/core/client/util/getOpaqueIds";
+import { Components, registerComponent } from "../../../lib";
+// import Logger from "/client/modules/logger";
+// import { i18next } from "/client/api";
+// import getOpaqueIds from "/imports/plugins/core/core/client/util/getOpaqueIds";
+// import getOpaqueIds from "../../../../../../plugins/core/core/client/util/getOpaqueIds";
+import getOpaqueIds from "@/plugins/core/core/client/util/getOpaqueIds";
+
+const i18next = {
+  // eslint-disable-next-line id-length
+  t: (ms) => ms
+};
 
 const deleteMediaRecordMutation = gql`
   mutation DeleteMediaRecord($input: DeleteMediaRecordInput!) {
@@ -37,17 +45,17 @@ function ShopBrandImageOption(props) {
   const handleClick = () => {
     if (isSelected) return;
 
-    const asset = { mediaId: media._id, type: "navbarBrandImage" };
+    // const asset = { mediaId: media._id, type: "navbarBrandImage" };
 
-    Meteor.call("shop/updateBrandAssets", asset, (error, result) => {
-      if (error || result !== 1) {
-        return Alerts.toast(i18next.t("shopSettings.shopBrandAssetsFailed"), "error");
-      }
+    // Meteor.call("shop/updateBrandAssets", asset, (error, result) => {
+    //   if (error || result !== 1) {
+    //     return Alerts.toast(i18next.t("shopSettings.shopBrandAssetsFailed"), "error");
+    //   }
 
-      if (afterSetBrandImage) afterSetBrandImage();
+    //   if (afterSetBrandImage) afterSetBrandImage();
 
-      return Alerts.toast(i18next.t("shopSettings.shopBrandAssetsSaved"), "success");
-    });
+    //   return Alerts.toast(i18next.t("shopSettings.shopBrandAssetsSaved"), "success");
+    // });
   };
 
   const handleRemoveMedia = (mediaToRemove) => {
@@ -79,7 +87,7 @@ function ShopBrandImageOption(props) {
             }
           },
           onError(error) {
-            Logger.error(error);
+            console.error(error);
             Alerts.toast("Unable to remove media", "error", {
               autoHide: 10000
             });

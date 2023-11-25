@@ -1,9 +1,10 @@
 import React from "react";
-import { registerComponent } from "@reactioncommerce/reaction-components";
+// import { registerComponent } from "@reactioncommerce/reaction-components";
 import { useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
 import gql from "graphql-tag";
-import Logger from "/client/modules/logger";
+import { registerComponent } from "../../../lib";
+// import Logger from "/client/modules/logger";
 import CreateShopForm from "../components/CreateShopForm.js";
 
 const createShopMutation = gql`
@@ -31,7 +32,7 @@ export default function CreateShopFormContainer() {
             input
           },
           onError(error) {
-            Logger.error(error);
+            console.error(error);
             Alerts.toast("Unable to create shop", "error", { autoHide: 10000 });
           }
         });

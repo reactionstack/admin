@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withComponents } from "@reactioncommerce/components-context";
-import withPrimaryShopId from "/imports/plugins/core/graphql/lib/hocs/withPrimaryShopId";
+import withPrimaryShopId from "../../plugins/core/graphql/lib/hocs/withPrimaryShopId";
 import GenericErrorBoundary from "../GenericErrorBoundary";
 
 const defaultLogo = "/resources/reaction-logo-circular.svg";

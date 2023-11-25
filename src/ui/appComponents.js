@@ -18,7 +18,6 @@ import Checkbox from "@reactioncommerce/components/Checkbox/v1";
 import ErrorsBlock from "@reactioncommerce/components/ErrorsBlock/v1";
 import Field from "@reactioncommerce/components/Field/v1";
 import InlineAlert from "@reactioncommerce/components/InlineAlert/v1";
-import { Link } from "/imports/plugins/core/ui/client/components/link";
 import MultiSelect from "@reactioncommerce/components/MultiSelect/v1";
 import PhoneNumberInput from "@reactioncommerce/components/PhoneNumberInput/v1";
 import Price from "@reactioncommerce/components/Price/v1";
@@ -31,7 +30,8 @@ import SelectableItem from "@reactioncommerce/components/SelectableItem/v1";
 import SelectableList from "@reactioncommerce/components/SelectableList/v1";
 import ShopLogo from "@reactioncommerce/components/ShopLogo/v1";
 import TextInput from "@reactioncommerce/components/TextInput/v1";
-import * as iconComponents from "./theme/icons";
+import { Link } from "../plugins/core/ui/client/components/link";
+import * as iconComponents from "../theme/icons";
 
 export default {
   ...iconComponents,

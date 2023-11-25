@@ -1,6 +1,6 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
-import Logger from "@reactioncommerce/logger";
+// import Logger from "@reactioncommerce/logger";
 
 class GenericErrorBoundary extends Component {
   static getDerivedStateFromError() {
@@ -11,7 +11,7 @@ class GenericErrorBoundary extends Component {
   static propTypes = {
     children: PropTypes.node,
     fallbackComponent: PropTypes.node
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class GenericErrorBoundary extends Component {
 
 
   componentDidCatch(error, info) {
-    Logger.error(info, error);
+    console.error(info, error);
   }
 
   render() {

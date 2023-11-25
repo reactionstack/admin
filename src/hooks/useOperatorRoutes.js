@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import useCurrentShop from "/imports/client/ui/hooks/useCurrentShop";
-import { operatorRoutes } from "../index";
+import useCurrentShop from "../hooks/useCurrentShop";
+import { operatorRoutes } from "../ui/index";
 
 export const defaultRouteSort = (routeA, routeB) => (
   (routeA.priority || Number.MAX_SAFE_INTEGER) - (routeB.priority || Number.MAX_SAFE_INTEGER)

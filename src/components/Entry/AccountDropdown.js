@@ -7,17 +7,18 @@ import Button from "@material-ui/core/Button";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import AccountIcon from "mdi-material-ui/Account";
 import Popover from "@material-ui/core/Popover";
-import { i18next } from "/client/api";
-import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId.js";
+// import { i18next } from "/client/api";
 import ViewerInfo from "@reactioncommerce/components/ViewerInfo/v1";
 import Link from "@material-ui/core/Link";
 import Modal from "@material-ui/core/Modal";
-import getAccountsHandler from "../../../../../lib/accountsServer";
+// import getAccountsHandler from "../../../../../lib/accountsServer";
+import useCurrentShopId from "../../hooks/useCurrentShopId";
+import getAccountsHandler from "../../lib/accountsServer";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ChangePassword from "./ChangePassword";
-import ForgotPassword from "./ForgotPassword";
-import ResetPassword from "./ResetPassword";
+// import ForgotPassword from "./ForgotPassword";
+// import ResetPassword from "./ResetPassword";
 
 /**
  * function to get query params passed to the current URL
@@ -61,6 +62,7 @@ const AccountDropdown = (props) => {
   const [anchorElement, setAnchorElement] = useState(null);
   const [modalValue, setModalValue] = useState("");
   const { accountsClient } = getAccountsHandler();
+  console.info(viewer, "============123123");
   const isAuthenticated = viewer && viewer._id;
 
   const onClose = () => {
@@ -99,11 +101,12 @@ const AccountDropdown = (props) => {
       comp = SignUp;
     } else if (modalValue === "change-password") {
       comp = ChangePassword;
-    } else if (modalValue === "forgot-password") {
-      comp = ForgotPassword;
-    } else if (modalValue === "reset-password") {
-      comp = ResetPassword;
     }
+    // else if (modalValue === "forgot-password") {
+    //   comp = ForgotPassword;
+    // } else if (modalValue === "reset-password") {
+    //   comp = ResetPassword;
+    // }
     return React.createElement(comp, { closeModal, openModal, resetToken, refetch: refetchViewer });
   };
 
@@ -137,7 +140,8 @@ const AccountDropdown = (props) => {
               <div className={classes.marginBottom}>
                 <Link href={`/${shopId}/profile`}>
                   <Button color="primary" fullWidth>
-                    {i18next.t("admin.userAccountDropdown.profileLabel")}
+                    {/* {i18next.t("admin.userAccountDropdown.profileLabel")} */}
+                    admin.userAccountDropdown.profileLabel
                   </Button>
                 </Link>
               </div>

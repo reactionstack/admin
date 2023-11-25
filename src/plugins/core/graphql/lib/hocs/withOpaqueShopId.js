@@ -1,5 +1,6 @@
 import React from "react";
-import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId";
+// import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId";
+import useCurrentShopId from "../../../../../hooks/useCurrentShopId";
 
 /**
  * @summary withOpaqueShopId HOC wrapper

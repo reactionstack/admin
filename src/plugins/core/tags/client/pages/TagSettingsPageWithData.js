@@ -1,6 +1,7 @@
+/* eslint-disable function-paren-newline */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { registerComponent, Components } from "@reactioncommerce/reaction-components";
+// import { registerComponent, Components } from "@reactioncommerce/reaction-components";
 import { withRouter } from "react-router";
 import { compose } from "recompose";
 import { withApollo } from "react-apollo";
@@ -9,10 +10,14 @@ import styled from "styled-components";
 import Button from "@reactioncommerce/catalyst/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { i18next } from "/client/api";
-import withOpaqueShopId from "/imports/plugins/core/graphql/lib/hocs/withOpaqueShopId";
+import { registerComponent, Components } from "../../../../core/lib";
+// import { i18next } from "/client/api";
+// import withOpaqueShopId from "/imports/plugins/core/graphql/lib/hocs/withOpaqueShopId";
 import { tagListingQuery } from "../../lib/queries";
+import withOpaqueShopId from "../../../graphql/lib/hocs/withOpaqueShopId";
 import { updateTagMutation, removeTagMutation } from "../../lib/mutations";
+import TagDataTableColumn from "../components/TagDataTableColumn";
+import TagDataTable from "../components/TagDataTable";
 
 const ButtonBar = styled.div`
   margin-bottom: 20px;
@@ -29,15 +34,15 @@ class TagSettings extends Component {
     isLoadingPrimaryShopId: PropTypes.bool,
     isLoadingShopId: PropTypes.bool,
     shopId: PropTypes.string.isRequired
-  }
+  };
 
   constructor(props) {
     super(props);
 
     this.bulkActions = [
-      { value: "hidden", label: i18next.t("admin.tags.makeHidden") },
-      { value: "visible", label: i18next.t("admin.tags.makeVisible") },
-      { value: "delete", label: i18next.t("admin.tags.delete") }
+      { value: "hidden", label: "makeHidden" },
+      { value: "visible", label: "makeVisible" },
+      { value: "delete", label: "delete" }
     ];
 
     this.tableRef = React.createRef();
@@ -46,7 +51,7 @@ class TagSettings extends Component {
   state = {
     selection: [],
     selectedTag: null
-  }
+  };
 
   formValue = null;
 
@@ -60,11 +65,11 @@ class TagSettings extends Component {
 
       this.props.history.push(`/${this.props.shopId}/tags/edit/${rowData._id}`);
     }
-  }
+  };
 
   handleShowCreateForm = () => {
     this.props.history.push(`/${this.props.shopId}/tags/create`);
-  }
+  };
 
   handleBulkAction = async (action, itemIds) => {
     const { client, shopId } = this.props;
@@ -112,7 +117,7 @@ class TagSettings extends Component {
     }
 
     return null;
-  }
+  };
 
   reset() {
     this.setState({
@@ -127,7 +132,7 @@ class TagSettings extends Component {
     if (isLoadingPrimaryShopId) return null;
 
     const filteredFields = ["heroMediaUrl", "slug", "displayTitle", "name", "isVisible", "edit"];
-    const noDataMessage = i18next.t("admin.tags.tableText.noDataMessage");
+    const noDataMessage = "admin.tags.tableText.noDataMessage";
 
     // helper adds a class to every grid row
     const customRowMetaData = {
@@ -140,7 +145,7 @@ class TagSettings extends Component {
       let colWidth;
       let colStyle;
       let colClassName;
-      let headerLabel = i18next.t(`admin.tags.headers.${field}`);
+      let headerLabel = `${field}`;
 
       if (field === "heroMediaUrl") {
         colWidth = 70;
@@ -156,7 +161,7 @@ class TagSettings extends Component {
 
       if (field === "isVisible") {
         colWidth = 110;
-        headerLabel = i18next.t("admin.tags.headers.status");
+        headerLabel = "status";
       }
 
       // https://react-table.js.org/#/story/cell-renderers-custom-components
@@ -164,7 +169,7 @@ class TagSettings extends Component {
         accessor: field,
         Header: headerLabel,
         Cell: (row) => (
-          <Components.TagDataTableColumn row={row} />
+          <TagDataTableColumn row={row} />
         ),
         className: colClassName,
         width: colWidth,
@@ -175,7 +180,7 @@ class TagSettings extends Component {
     });
 
     return (
-      <Components.TagDataTable
+      <TagDataTable
         ref={this.tableRef}
         bulkActions={this.bulkActions}
         query={tagListingQuery}
@@ -198,7 +203,7 @@ class TagSettings extends Component {
       <div>
         <ButtonBar>
           <Button variant="contained" color="primary" onClick={this.handleShowCreateForm}>
-            {i18next.t("admin.tags.form.createNew")}
+            {"admin.tags.form.createNew"}
           </Button>
         </ButtonBar>
 

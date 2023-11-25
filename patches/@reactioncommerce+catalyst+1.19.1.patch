@@ -1,0 +1,48 @@
+diff --git a/node_modules/@reactioncommerce/catalyst/theme/defaultTheme.mjs b/node_modules/@reactioncommerce/catalyst/theme/defaultTheme.mjs
+index 6d67ef5..8d0dcfd 100644
+--- a/node_modules/@reactioncommerce/catalyst/theme/defaultTheme.mjs
++++ b/node_modules/@reactioncommerce/catalyst/theme/defaultTheme.mjs
+@@ -6,7 +6,9 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+ import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
+ import defaultTheme from "@material-ui/core/styles/defaultTheme";
+ import colors from "./colors";
+-var breakpoints = createBreakpoints({});
++console.info(createBreakpoints, defaultTheme, "========");
++var breakpoints = createBreakpoints.default({});
++console.info(breakpoints, "========");
+ var toolbarHeight = 80;
+ var toolbarMobileHeight = 54; // Colors
+ 
+@@ -360,7 +362,7 @@ export var rawMuiTheme = {
+     },
+     MuiDialogTitle: {
+       root: {
+-        "padding": defaultTheme.spacing(4, 4, 1, 4),
++        "padding": defaultTheme.default.spacing(4, 4, 1, 4),
+         "& h2": {
+           fontWeight: fontWeightSemiBold
+         }
+@@ -368,12 +370,12 @@ export var rawMuiTheme = {
+     },
+     MuiDialogContent: {
+       root: {
+-        padding: defaultTheme.spacing(1, 4)
++        padding: defaultTheme.default.spacing(1, 4)
+       }
+     },
+     MuiDialogActions: {
+       root: {
+-        padding: defaultTheme.spacing(1, 4, 4, 4)
++        padding: defaultTheme.default.spacing(1, 4, 4, 4)
+       }
+     },
+     MuiDrawer: {
+@@ -487,4 +489,5 @@ export var rawMuiTheme = {
+     }
+   }
+ };
+-export default createMuiTheme(rawMuiTheme);
+\ No newline at end of file
++
++export default createMuiTheme.default(rawMuiTheme);
+\ No newline at end of file

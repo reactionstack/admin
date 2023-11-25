@@ -11,7 +11,7 @@ import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withComponents } from "@reactioncommerce/components-context";
-import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId";
+import useCurrentShopId from "../../hooks/useCurrentShopId";
 
 const defaultLogo = "/resources/reaction-logo-circular.svg";
 

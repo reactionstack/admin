@@ -2,12 +2,13 @@ import { ApolloLink } from "apollo-link";
 import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { Meteor } from "meteor/meteor";
+// import { Meteor } from "meteor/meteor";
 import { AccountsClient } from "@accounts/client";
 import { AccountsClientPassword } from "@accounts/client-password";
 import { AccountsGraphQLClient } from "@accounts/graphql-client";
 
-const { graphQlApiUrlHttp } = Meteor.settings.public;
+// const { graphQlApiUrlHttp } = Meteor.settings.public;
+const graphQlApiUrlHttp = "http://localhost:3000/graphql";
 
 const passwordClient = null;
 let accountsClient = null;

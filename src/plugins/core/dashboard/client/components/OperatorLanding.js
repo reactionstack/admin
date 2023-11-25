@@ -4,11 +4,16 @@ import { Link, Redirect, useParams } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import MuiLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import { Components } from "@reactioncommerce/reaction-components";
-import ShopLogoWithData from "/imports/client/ui/components/ShopLogoWithData/ShopLogoWithData";
-import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId.js";
-import useIsAppLoading from "/imports/client/ui/hooks/useIsAppLoading.js";
-import useAuth from "/imports/client/ui/hooks/useAuth";
+// import { Components } from "@reactioncommerce/reaction-components";
+// import { Components } from "../../../lib";
+// import ShopLogoWithData from "/imports/client/ui/components/ShopLogoWithData/ShopLogoWithData";
+import ShopLogoWithData from "../../../../../components/ShopLogoWithData";
+// import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId.js";
+// import useIsAppLoading from "/imports/client/ui/hooks/useIsAppLoading.js";
+// import useAuth from "/imports/client/ui/hooks/useAuth";
+import useCurrentShopId from "../../../../../hooks/useCurrentShopId";
+import useIsAppLoading from "../../../../../hooks/useIsAppLoading";
+import useAuth from "../../../../../hooks/useAuth";
 
 /**
  * OperatorLanding
@@ -21,7 +26,9 @@ function OperatorLanding() {
   const routeParams = useParams();
   const [isAppLoading] = useIsAppLoading();
 
-  if (isAppLoading || isViewerLoading) return <Components.Loading />;
+  console.info(isAppLoading, isAppLoading, viewer?.adminUIShops, 88888);
+  // if (isAppLoading || isViewerLoading) return <Components.Loading />;
+  if (isAppLoading || isViewerLoading) return null;
 
   if (!routeParams.shopId && viewer?.adminUIShops?.length > 0) {
     return (

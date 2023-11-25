@@ -6,13 +6,14 @@ import ReactTable from "react-table";
 import checkboxHOC from "react-table/lib/hoc/selectTable";
 import ChevronRightIcon from "mdi-material-ui/ChevronRight";
 import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
-import { registerComponent } from "@reactioncommerce/reaction-components";
+// import { registerComponent } from "@reactioncommerce/reaction-components";
 import styled from "styled-components";
 import Select from "@reactioncommerce/components/Select/v1";
 import TextInput from "@reactioncommerce/components/TextInput/v1";
 import Button from "@reactioncommerce/catalyst/Button";
-import Logger from "/client/modules/logger";
-import { i18next } from "/client/api";
+import { registerComponent } from "../../../../core/lib";
+// import Logger from "/client/modules/logger";
+// import { i18next } from "/client/api";
 import { pagination } from "./util/pagination";
 import TagTableSelect from "./TagTableSelect";
 
@@ -120,7 +121,7 @@ class TagDataTable extends Component {
     }
 
     return null;
-  }
+  };
 
   /**
    * @name handleFilterInput
@@ -132,7 +133,7 @@ class TagDataTable extends Component {
     this.setState({
       filterInput: value
     });
-  }
+  };
 
   /**
    * @name filterData
@@ -205,6 +206,8 @@ class TagDataTable extends Component {
   renderColumns() {
     const { columnMetadata } = this.props;
 
+    console.info(columnMetadata, "======columnMetadata======");
+
     // Add minWidth = undefined to override 100px default set by ReactTable
     const displayColumns = columnMetadata.map((element) => Object.assign({}, element, {
       minWidth: undefined
@@ -242,7 +245,7 @@ class TagDataTable extends Component {
       return (
         <FilterTextInput>
           <TextInput
-            placeholder={i18next.t("reactionUI.components.sortableTable.filterPlaceholder", { defaultValue: "Filter Data" })}
+            placeholder={"reactionUI.components.sortableTable.filterPlaceholder"}
             onChanging={this.handleFilterInput}
             value={this.state.filterInput}
             name="filterInput"
@@ -271,7 +274,7 @@ class TagDataTable extends Component {
       const option = bulkActions.find((opt) => opt.value === action);
 
       Alerts.alert({
-        title: i18next.t(`admin.tags.${option.value}Action`, { count: selection.length }),
+        title: `admin.tags.${option.value}Action`,
         type: "warning",
         showCancelButton: true
       }, async (isConfirm) => {
@@ -292,7 +295,7 @@ class TagDataTable extends Component {
         });
       });
     }
-  }
+  };
 
   /**
    * @name renderBulkActionsSelect
@@ -379,7 +382,7 @@ class TagDataTable extends Component {
    */
   isRowSelected = (key) => (
     this.state.selection.find((element) => element._id === key) !== undefined
-  )
+  );
 
   /**
    * @name handleToggleSelection
@@ -417,7 +420,7 @@ class TagDataTable extends Component {
         selectedBulkAction: selection.length === 0 ? undefined : prevState.selectedBulkAction
       };
     });
-  }
+  };
 
   /**
    * @name handleToggleAll
@@ -442,7 +445,7 @@ class TagDataTable extends Component {
       }
       this.setState({ selectAll, selection });
     });
-  }
+  };
 
   render() {
     const { query, variables: variablesProp, defaultPageSize, ...otherProps } = this.props;
@@ -469,7 +472,7 @@ class TagDataTable extends Component {
       <Query query={query} variables={variables} fetchPolicy="network-only">
         {({ data, error, fetchMore, refetch }) => {
           if (error || !data) {
-            if (error) Logger.error(error);
+            if (error) console.error(error);
             return null;
           }
 
@@ -572,14 +575,14 @@ class TagDataTable extends Component {
                   disabled={!hasPreviousPage}
                 >
                   <ChevronLeftIcon />
-                  {i18next.t("admin.tags.tableText.previousText")}
+                  {"admin.tags.tableText.previousText"}
                 </Button>
                 <Button
                   size="small"
                   onClick={loadNextPage}
                   disabled={!hasNextPage}
                 >
-                  {i18next.t("admin.tags.tableText.nextText")}
+                  {"admin.tags.tableText.nextText"}
                   <ChevronRightIcon />
                 </Button>
               </PaginationContainer>

@@ -7,8 +7,8 @@ import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 import red from "@material-ui/core/colors/red";
 
-import getAccountsHandler from "../../../../../lib/accountsServer";
-import hashPassword from "../../../../../lib/utils/hashPassword";
+import getAccountsHandler from "../../lib/accountsServer";
+import hashPassword from "../../lib/utils/hashPassword";
 
 
 const useStyles = makeStyles((theme) => ({

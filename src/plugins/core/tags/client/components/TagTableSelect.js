@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@material-ui/core/Checkbox";
-import CheckboxCheckedIcon from "mdi-material-ui/CheckBoxOutline";
+// import CheckboxCheckedIcon from "mdi-material-ui/CheckBoxOutline";
 
 /**
  * @name TagTableSelect
@@ -14,7 +14,7 @@ export default function TagTableSelect(props) {
   return (
     <Checkbox
       checked={props.checked}
-      checkedIcon={<CheckboxCheckedIcon />}
+      // checkedIcon={<CheckboxCheckedIcon />}
       onClick={(event) => {
         const { shiftKey } = event;
         event.stopPropagation();

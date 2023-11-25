@@ -50,10 +50,28 @@ export default function useCurrentShop() {
     });
   }
 
+  const shop = {
+    _id: "6HgBRrKEsQ6x8MF7u",
+    brandAssets: null,
+    defaultParcelSize: {
+      height: 4,
+      length: 2,
+      weight: 1,
+      width: 3,
+      __typename: "ShopParcelSize"
+    },
+    language: "en",
+    name: "积分购买商店",
+    shopLogoUrls: null,
+    shopType: "merchant",
+    storefrontUrls: null,
+    __typename: "Shop"
+  };
+
   return {
     isLoadingShop: loading,
     refetchShop: refetch,
-    shop: data && data.shop,
-    shopId
+    shop: (data && data.shop) || shop,
+    shopId: shopId || "6HgBRrKEsQ6x8MF7"
   };
 }
