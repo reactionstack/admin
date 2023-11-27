@@ -5,6 +5,7 @@ import { applyTheme } from "@reactioncommerce/components/utils";
 // import colors from "/imports/plugins/core/router/client/theme/colors.js";
 import styled, { css } from "styled-components";
 import CircleIcon from "mdi-material-ui/CheckboxBlankCircle";
+import { i18next } from "../../../../../i18n";
 import colors from "../../../../../theme/colors";
 import { Components, registerComponent, withMoment } from "../../../../core/lib";
 import Icon from "../../../../../plugins/core/ui/client/components/icon/icon";
@@ -62,7 +63,7 @@ class TagDataTableColumn extends Component {
       return (
         <Cell>
           <StatusIcon isVisible={row.value} fontSize="small" />
-          <EnabledLabel>{row.value ? "admin.tags.visible" : "admin.tags.hidden"}</EnabledLabel>
+          <EnabledLabel>{i18next.t(row.value ? "admin.tags.visible" : "admin.tags.hidden")}</EnabledLabel>
         </Cell>
       );
     } else if (renderColumn === "edit") {

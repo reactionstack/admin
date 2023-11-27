@@ -11,9 +11,10 @@ import styled from "styled-components";
 import Select from "@reactioncommerce/components/Select/v1";
 import TextInput from "@reactioncommerce/components/TextInput/v1";
 import Button from "@reactioncommerce/catalyst/Button";
+// import i18next from "i18next";
 import { registerComponent } from "../../../../core/lib";
 // import Logger from "/client/modules/logger";
-// import { i18next } from "/client/api";
+import { i18next } from "../../../../../i18n";
 import { pagination } from "./util/pagination";
 import TagTableSelect from "./TagTableSelect";
 
@@ -206,8 +207,6 @@ class TagDataTable extends Component {
   renderColumns() {
     const { columnMetadata } = this.props;
 
-    console.info(columnMetadata, "======columnMetadata======");
-
     // Add minWidth = undefined to override 100px default set by ReactTable
     const displayColumns = columnMetadata.map((element) => Object.assign({}, element, {
       minWidth: undefined
@@ -245,7 +244,7 @@ class TagDataTable extends Component {
       return (
         <FilterTextInput>
           <TextInput
-            placeholder={"reactionUI.components.sortableTable.filterPlaceholder"}
+            placeholder={i18next.t("reactionUI.components.sortableTable.filterPlaceholder", { defaultValue: "Filter Data" })}
             onChanging={this.handleFilterInput}
             value={this.state.filterInput}
             name="filterInput"
@@ -274,7 +273,7 @@ class TagDataTable extends Component {
       const option = bulkActions.find((opt) => opt.value === action);
 
       Alerts.alert({
-        title: `admin.tags.${option.value}Action`,
+        title: i18next.t(`admin.tags.${option.value}Action`, { count: selection.length }),
         type: "warning",
         showCancelButton: true
       }, async (isConfirm) => {
@@ -575,14 +574,14 @@ class TagDataTable extends Component {
                   disabled={!hasPreviousPage}
                 >
                   <ChevronLeftIcon />
-                  {"admin.tags.tableText.previousText"}
+                  {i18next.t("admin.tags.tableText.previousText")}
                 </Button>
                 <Button
                   size="small"
                   onClick={loadNextPage}
                   disabled={!hasNextPage}
                 >
-                  {"admin.tags.tableText.nextText"}
+                  {i18next.t("admin.tags.tableText.nextText")}
                   <ChevronRightIcon />
                 </Button>
               </PaginationContainer>

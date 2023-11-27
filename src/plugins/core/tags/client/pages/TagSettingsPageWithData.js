@@ -10,6 +10,7 @@ import styled from "styled-components";
 import Button from "@reactioncommerce/catalyst/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import { i18next } from "../../../../../i18n";
 import { registerComponent, Components } from "../../../../core/lib";
 // import { i18next } from "/client/api";
 // import withOpaqueShopId from "/imports/plugins/core/graphql/lib/hocs/withOpaqueShopId";
@@ -40,10 +41,11 @@ class TagSettings extends Component {
     super(props);
 
     this.bulkActions = [
-      { value: "hidden", label: "makeHidden" },
-      { value: "visible", label: "makeVisible" },
-      { value: "delete", label: "delete" }
+      { value: "hidden", label: i18next.t("admin.tags.makeHidden") },
+      { value: "visible", label: i18next.t("admin.tags.makeVisible") },
+      { value: "delete", label: i18next.t("admin.tags.delete") }
     ];
+
 
     this.tableRef = React.createRef();
   }
@@ -128,11 +130,16 @@ class TagSettings extends Component {
 
   renderTable() {
     const { shopId, isLoadingPrimaryShopId } = this.props;
+    this.bulkActions = [
+      { value: "hidden", label: i18next.t("admin.tags.makeHidden") },
+      { value: "visible", label: i18next.t("admin.tags.makeVisible") },
+      { value: "delete", label: i18next.t("admin.tags.delete") }
+    ];
 
     if (isLoadingPrimaryShopId) return null;
 
     const filteredFields = ["heroMediaUrl", "slug", "displayTitle", "name", "isVisible", "edit"];
-    const noDataMessage = "admin.tags.tableText.noDataMessage";
+    const noDataMessage = i18next.t("admin.tags.tableText.noDataMessage");
 
     // helper adds a class to every grid row
     const customRowMetaData = {
@@ -145,7 +152,7 @@ class TagSettings extends Component {
       let colWidth;
       let colStyle;
       let colClassName;
-      let headerLabel = `${field}`;
+      let headerLabel = i18next.t(`admin.tags.headers.${field}`);
 
       if (field === "heroMediaUrl") {
         colWidth = 70;
@@ -161,7 +168,7 @@ class TagSettings extends Component {
 
       if (field === "isVisible") {
         colWidth = 110;
-        headerLabel = "status";
+        headerLabel = i18next.t("admin.tags.headers.status");
       }
 
       // https://react-table.js.org/#/story/cell-renderers-custom-components
@@ -203,7 +210,7 @@ class TagSettings extends Component {
       <div>
         <ButtonBar>
           <Button variant="contained" color="primary" onClick={this.handleShowCreateForm}>
-            {"admin.tags.form.createNew"}
+            {i18next.t("admin.tags.form.createNew")}
           </Button>
         </ButtonBar>
 

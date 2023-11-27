@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
-import { Logger } from "/client/api";
+// import { Logger } from "/client/api";
 import { compose, setDisplayName } from "recompose";
 
 export const BlocksTable = {}; // storage for separate elements of each block
@@ -173,7 +174,7 @@ export function getBlocks(regionName) {
   const region = BlocksTable[regionName];
 
   if (!region) {
-    Logger.warn(`No blocks available for region named ${regionName}.`);
+    console.warn(`No blocks available for region named ${regionName}.`);
     return null;
   }
 

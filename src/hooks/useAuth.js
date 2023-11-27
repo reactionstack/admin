@@ -35,7 +35,6 @@ query getViewer {
 export default function useAuth() {
   const authToken = typeof window !== "undefined" ? window.localStorage.getItem("accounts:accessToken") : undefined;
   const { loading, error, data: viewerData, refetch } = useQuery(viewerQuery);
-  console.info(viewerData, authToken, "=======useAuth=======");
 
   if (error) {
     console.log(error); // eslint-disable-line no-console
@@ -43,7 +42,6 @@ export default function useAuth() {
 
   // Perform a `viewer` query whenever we get a new access token
   useEffect(() => {
-    console.info("=======authToken========", authToken);
     setAccessToken(authToken);
     refetch();
   }, [authToken, refetch]);

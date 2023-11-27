@@ -1,17 +1,18 @@
 /* eslint-disable node/no-missing-require, node/no-unpublished-require */
-import Logger from "@reactioncommerce/logger";
-import { Meteor } from "meteor/meteor";
+// import Logger from "@reactioncommerce/logger";
+// import { Meteor } from "meteor/meteor";
 import { lifecycle } from "recompose";
-import { composeWithTracker } from "./composer";
+import { i18next } from "../../../../i18n";
+// import { composeWithTracker } from "./composer";
 
-let i18next;
-let Reaction;
+// let i18next;
+// let Reaction;
 
-if (Meteor.isClient) {
-  ({ i18next, Reaction } = require("/client/api"));
-} else {
-  Reaction = require("/imports/plugins/core/core/server/Reaction").default;
-}
+// if (Meteor.isClient) {
+//   ({ i18next, Reaction } = require("/client/api"));
+// } else {
+//   Reaction = require("/imports/plugins/core/core/server/Reaction").default;
+// }
 
 
 /**
@@ -23,9 +24,9 @@ if (Meteor.isClient) {
  * @memberof Components/Helpers
  */
 export function withCurrentUser(component) {
-  return composeWithTracker((props, onData) => {
-    onData(null, { currentUser: Meteor.user() });
-  })(component);
+  // return composeWithTracker((props, onData) => {
+  //   onData(null, { currentUser: Meteor.user() });
+  // })(component);
 }
 
 
@@ -47,7 +48,7 @@ export function withMoment(component) {
           return null;
         })
         .catch((error) => {
-          Logger.debug(error, "moment.js async import error");
+          console.debug(error, "moment.js async import error");
         });
     }
   })(component);
@@ -71,7 +72,7 @@ export function withMomentTimezone(component) {
           return null;
         })
         .catch((error) => {
-          Logger.debug(error, "moment.js async import error");
+          console.debug(error, "moment.js async import error");
         });
     }
   })(component);
@@ -87,9 +88,9 @@ export function withMomentTimezone(component) {
  * @memberof Components/Helpers
  */
 export function withIsAdmin(component) {
-  return composeWithTracker((props, onData) => {
-    onData(null, { isAdmin: Reaction.hasAdminAccess() });
-  })(component);
+  // return composeWithTracker((props, onData) => {
+  //   onData(null, { isAdmin: Reaction.hasAdminAccess() });
+  // })(component);
 }
 
 /**
@@ -116,7 +117,7 @@ export function withCSSTransition(component) {
           return null;
         })
         .catch((error) => {
-          Logger.error(error.message, "Unable to load react-transition-group");
+          console.error(error.message, "Unable to load react-transition-group");
         });
     },
     componentWillUnmount() {
@@ -168,7 +169,7 @@ export function withAnimateHeight(component) {
           return null;
         })
         .catch((error) => {
-          Logger.error(error.message, "Unable to load react-animate-height");
+          console.error(error.message, "Unable to load react-animate-height");
         });
     },
     componentWillUnmount() {

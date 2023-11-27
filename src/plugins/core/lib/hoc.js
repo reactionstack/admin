@@ -3,9 +3,9 @@
 // import Logger from "@reactioncommerce/logger";
 // import { Meteor } from "meteor/meteor";
 import { lifecycle } from "recompose";
+import { i18next } from "../../../i18n";
 import { composeWithTracker } from "./composer";
 
-let i18next;
 // let Reaction;
 
 // if (Meteor.isClient) {

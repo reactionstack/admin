@@ -1,7 +1,9 @@
 import React, { Component, Children } from "react"; // eslint-disable-line
 import PropTypes from "prop-types";
-import { composeWithTracker } from "@reactioncommerce/reaction-components";
-import { i18next, i18nextDep } from "/client/api";
+// import { composeWithTracker } from "@reactioncommerce/reaction-components";
+// import { i18next, i18nextDep } from "/client/api";
+import i18next from "i18next";
+import { composeWithTracker } from "../../../lib";
 
 class TranslationProvider extends Component {
   getChildContext() {
@@ -30,7 +32,7 @@ TranslationProvider.propTypes = {
  * @returns {undefined}
  */
 function composer(props, onData) {
-  i18nextDep.depend();
+  // i18nextDep.depend();
 
   onData(null, {
     translations: {

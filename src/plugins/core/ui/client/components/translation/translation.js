@@ -1,8 +1,10 @@
 import { camelCase } from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { registerComponent } from "@reactioncommerce/reaction-components";
-import { i18next } from "/client/api";
+// import { registerComponent } from "@reactioncommerce/reaction-components";
+import { registerComponent } from "../../../../lib";
+// import { i18next } from "/client/api";
+import { i18next } from "../../../../../../i18n";
 
 const Translation = ({ i18nKey, defaultValue, ...rest }) => {
   const key = i18nKey || camelCase(defaultValue);

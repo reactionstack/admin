@@ -6,17 +6,13 @@ import { useMutation } from "@apollo/react-hooks";
 // import { Components, registerComponent } from "@reactioncommerce/reaction-components";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { i18next } from "../../../../../i18n";
 import { Components, registerComponent } from "../../../lib";
 // import Logger from "/client/modules/logger";
 // import { i18next } from "/client/api";
 // import getOpaqueIds from "/imports/plugins/core/core/client/util/getOpaqueIds";
 // import getOpaqueIds from "../../../../../../plugins/core/core/client/util/getOpaqueIds";
 import getOpaqueIds from "@/plugins/core/core/client/util/getOpaqueIds";
-
-const i18next = {
-  // eslint-disable-next-line id-length
-  t: (ms) => ms
-};
 
 const deleteMediaRecordMutation = gql`
   mutation DeleteMediaRecord($input: DeleteMediaRecordInput!) {

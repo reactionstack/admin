@@ -1,9 +1,10 @@
 import React from "react";
-import { Components, registerComponent } from "@reactioncommerce/reaction-components";
+import { registerComponent } from "../../../../../core/components/lib";
+import CircularProgress from "../progress/circularProgress";
 
 const Loading = () => (
   <div className="spinner-container spinner-container-lg">
-    <Components.CircularProgress indeterminate={true} />
+    <CircularProgress indeterminate={true} />
   </div>
 );
 

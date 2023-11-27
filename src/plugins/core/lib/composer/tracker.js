@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 // import { Tracker } from "meteor/tracker";
-import { Components } from "../components";
+// import { Components } from "../components";
+// import { Components } from "../../components/lib";
 import compose from "./compose";
 
 /**
@@ -34,18 +35,19 @@ import compose from "./compose";
  * @private
  */
 function getTrackerLoader(reactiveMapper) {
-  return (props, onData, env) => {
-    // let trackerCleanup = null;
-    // // const handler = Tracker.nonreactive(() => Tracker.autorun(() => {
-    // //   // assign the custom clean-up function.
-    // //   trackerCleanup = reactiveMapper(props, onData, env);
-    // // }));
+  return reactiveMapper;
+  // return (props, onData, env) => {
+  // let trackerCleanup = null;
+  // // const handler = Tracker.nonreactive(() => Tracker.autorun(() => {
+  // //   // assign the custom clean-up function.
+  // //   trackerCleanup = reactiveMapper(props, onData, env);
+  // // }));
 
-    // return () => {
-    //   if (typeof trackerCleanup === "function") trackerCleanup();
-    //   return handler.stop();
-    // };
-  };
+  // return () => {
+  //   if (typeof trackerCleanup === "function") trackerCleanup();
+  //   return handler.stop();
+  // };
+  // };
 }
 
 
@@ -63,7 +65,8 @@ export function composeWithTracker(reactiveMapper, options) {
 
   if (typeof options === "undefined") {
     // eslint-disable-next-line react/display-name
-    composeOptions.loadingHandler = () => <Components.Loading />;
+    // composeOptions.loadingHandler = () => <Component.Loading />;
+    composeOptions.loadingHandler = () => null;
   }
 
   if (typeof options === "function") {

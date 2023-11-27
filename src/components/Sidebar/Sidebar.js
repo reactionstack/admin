@@ -13,7 +13,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Drawer from "@material-ui/core/Drawer";
 import withStyles from "@material-ui/core/styles/withStyles";
 import CloseIcon from "mdi-material-ui/Close";
-// import { Translation } from "/imports/plugins/core/ui/client/components";
+import Translation from "../../plugins/core/ui/client/components/translation/translation";
 import useIsAppLoading from "../../hooks/useIsAppLoading";
 import useCurrentShopId from "../../hooks/useCurrentShopId";
 import ShopSelectorWithData from "../ShopSelectorWithData";
@@ -148,8 +148,8 @@ function Sidebar(props) {
                 disableTypography
                 className={classes.listItemText}
               >
-                <span>{route.sidebarI18nLabel}</span>
-                {/* <Translation defaultValue="" i18nKey={route.sidebarI18nLabel} /> */}
+                {/* <span>{route.sidebarI18nLabel}</span> */}
+                <Translation defaultValue="" i18nKey={route.sidebarI18nLabel} />
               </ListItemText>
             </ListItem>
           </NavLink>

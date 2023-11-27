@@ -16,7 +16,7 @@ import {
   loadRegisteredBlocks,
   loadRegisteredComponents
 } from "./plugins/core/lib";
-// import { TranslationProvider } from "./plugins/core/ui/client/providers";
+import { TranslationProvider } from "./plugins/core/ui/client/providers";
 
 import RouterContext from "./context/RouterContext";
 import appComponents from "./ui/appComponents";
@@ -29,6 +29,8 @@ import snackbarPosition from "./utils/getSnackbarPosition";
 // import initApollo from "@/imports/plugins/core/graphql/lib/helpers/initApollo";
 import initApollo from "./plugins/core/graphql/lib/helpers/initApollo";
 
+import "./i18n/startup";
+
 loadRegisteredBlocks();
 loadRegisteredComponents();
 
@@ -38,30 +40,30 @@ ReactDOM.render(
   <ApolloProvider client={apolloClient}>
     <ReactApolloProvider client={apolloClient}>
       <BrowserRouter>
-        {/* <TranslationProvider> */}
-        <ComponentsProvider value={appComponents}>
-          <ThemeProvider theme={theme}>
-            <MuiThemeProvider theme={defaultTheme}>
-              <SnackbarProvider anchorOrigin={snackbarPosition} maxSnack={3}>
-                <DndProvider
-                  backend={HTML5Backend}
-                  options={{
-                    rootElement: document.getElementsByTagName("body")
-                  }}
-                >
-                  <Route>
-                    {(routeProps) => (
-                      <RouterContext.Provider value={routeProps}>
-                        <App />
-                      </RouterContext.Provider>
-                    )}
-                  </Route>
-                </DndProvider>
-              </SnackbarProvider>
-            </MuiThemeProvider>
-          </ThemeProvider>
-        </ComponentsProvider>
-        {/* </TranslationProvider> */}
+        <TranslationProvider>
+          <ComponentsProvider value={appComponents}>
+            <ThemeProvider theme={theme}>
+              <MuiThemeProvider theme={defaultTheme}>
+                <SnackbarProvider anchorOrigin={snackbarPosition} maxSnack={3}>
+                  <DndProvider
+                    backend={HTML5Backend}
+                    options={{
+                      rootElement: document.getElementsByTagName("body")
+                    }}
+                  >
+                    <Route>
+                      {(routeProps) => (
+                        <RouterContext.Provider value={routeProps}>
+                          <App />
+                        </RouterContext.Provider>
+                      )}
+                    </Route>
+                  </DndProvider>
+                </SnackbarProvider>
+              </MuiThemeProvider>
+            </ThemeProvider>
+          </ComponentsProvider>
+        </TranslationProvider>
       </BrowserRouter>
     </ReactApolloProvider>
   </ApolloProvider>,

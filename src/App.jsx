@@ -1,5 +1,5 @@
 import React from "react";
-import { Components } from "./plugins/core/lib";
+// import { Components } from "./plugins/core/lib";
 import useAuth from "./hooks/useAuth";
 import Dashboard from "./Dashboard";
 import useIsAppLoading from "./hooks/useIsAppLoading";

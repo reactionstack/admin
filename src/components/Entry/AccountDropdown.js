@@ -62,7 +62,6 @@ const AccountDropdown = (props) => {
   const [anchorElement, setAnchorElement] = useState(null);
   const [modalValue, setModalValue] = useState("");
   const { accountsClient } = getAccountsHandler();
-  console.info(viewer, "============123123");
   const isAuthenticated = viewer && viewer._id;
 
   const onClose = () => {
