@@ -26,7 +26,6 @@ function OperatorLanding() {
   const routeParams = useParams();
   const [isAppLoading] = useIsAppLoading();
 
-  console.info(isAppLoading, isAppLoading, viewer?.adminUIShops, 88888);
   // if (isAppLoading || isViewerLoading) return <Components.Loading />;
   if (isAppLoading || isViewerLoading) return null;
 

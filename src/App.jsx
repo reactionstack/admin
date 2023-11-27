@@ -6,6 +6,7 @@ import useIsAppLoading from "./hooks/useIsAppLoading";
 
 import "./plugins/core/tags/client/index";
 import "./plugins/core/dashboard/client/index";
+import "./plugins/core/orders/client/index";
 
 /**
  * App component

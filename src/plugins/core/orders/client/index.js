@@ -1,39 +1,40 @@
 import React from "react";
 import InboxIcon from "mdi-material-ui/Inbox";
-import { registerBlock } from "@reactioncommerce/reaction-components";
-import { registerOperatorRoute } from "/imports/client/ui";
-import ContentViewExtraWideLayout from "/imports/client/ui/layouts/ContentViewExtraWideLayout";
-import { Shop } from "/imports/collections/schemas";
-import OrderCardSummary from "./components/OrderCardSummary";
+// import { registerBlock } from "@reactioncommerce/reaction-components";
+import { registerOperatorRoute } from "../../../../ui";
+import ContentViewExtraWideLayout from "../../../../ui/ContentViewExtraWideLayout";
+// import ContentViewExtraWideLayout from "/imports/client/ui/layouts/ContentViewExtraWideLayout";
+// import { Shop } from "/imports/collections/schemas";
+// import OrderCardSummary from "./components/OrderCardSummary";
 import Orders from "./components/OrdersTable";
-import Order from "./containers/OrderContainer";
-import OrderPrint from "./containers/OrderPrintContainer";
+// import Order from "./containers/OrderContainer";
+// import OrderPrint from "./containers/OrderPrintContainer";
 import "./helpers";
 
-Shop.extend({
-  orderStatusLabels: {
-    type: Object,
-    blackbox: true,
-    optional: true
-  }
-});
+// Shop.extend({
+//   orderStatusLabels: {
+//     type: Object,
+//     blackbox: true,
+//     optional: true
+//   }
+// });
 
 // Register order related routes
 /*
  * Single order page route
  */
-registerOperatorRoute({
-  MainComponent: Order,
-  path: "/orders/:_id"
-});
+// registerOperatorRoute({
+//   MainComponent: Order,
+//   path: "/orders/:_id"
+// });
 
-/*
- * Single order print layout route
- */
-registerOperatorRoute({
-  MainComponent: OrderPrint,
-  path: "/orders/print/:_id"
-});
+// /*
+//  * Single order print layout route
+//  */
+// registerOperatorRoute({
+//   MainComponent: OrderPrint,
+//   path: "/orders/print/:_id"
+// });
 
 /*
  * Orders table route
@@ -54,9 +55,9 @@ registerOperatorRoute({
 /*
  * OrderCardSummary
  */
-registerBlock({
-  region: "OrderCardSummary",
-  name: "OrderCardSummary",
-  component: OrderCardSummary,
-  priority: 10
-});
+// registerBlock({
+//   region: "OrderCardSummary",
+//   name: "OrderCardSummary",
+//   component: OrderCardSummary,
+//   priority: 10
+// });

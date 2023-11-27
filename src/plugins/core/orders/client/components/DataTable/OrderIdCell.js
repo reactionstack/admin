@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { i18next } from "/client/api";
+// import { i18next } from "/client/api";
 import Chip from "@reactioncommerce/catalyst/Chip";
 import { Box } from "@material-ui/core";
+import { i18next } from "../../../../../../i18n";
 
 /**
  * @name OrderIdCell

@@ -1,5 +1,6 @@
 import moment from "moment";
-import { Reaction } from "/client/api";
+// import { Reaction } from "/client/api";
+import { getShopId } from "../../../../../utils/getShop";
 
 /**
  * @method formatDateRangeFilter
@@ -84,7 +85,7 @@ export function getOrderRiskBadge(riskLevel) {
  * @returns {string} label - risk level value (if risk level is not normal)
  */
 export function getOrderRiskStatus(order) {
-  const groupForShop = order.shipping.find((group) => group.shopId === Reaction.getShopId());
+  const groupForShop = order.shipping.find((group) => group.shopId === getShopId());
   const { riskLevel } = groupForShop.payment || {};
 
   // normal transactions do not need to be flagged
@@ -216,6 +217,6 @@ export function filterShippingStatus(filter) {
  * @returns {Object} proper shipping object to use
  */
 export function getShippingInfo(order) {
-  const shippingInfo = order && order.shipping && order.shipping.find((group) => group.shopId === Reaction.getShopId());
+  const shippingInfo = order && order.shipping && order.shipping.find((group) => group.shopId === getShopId());
   return shippingInfo || {};
 }
