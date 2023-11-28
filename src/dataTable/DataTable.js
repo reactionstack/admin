@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
-// import clsx from "clsx";
+import clsx from "clsx";
 import {
   AppBar,
   ButtonGroup,
@@ -27,7 +27,7 @@ import CloseIcon from "mdi-material-ui/Close";
 import Button from "./Button";
 // import Select from "../Select";
 // import ActionMenu from "../ActionMenu";
-// import DataTableFilterChipBar from "./helpers/DataTableFilterChipBar";
+import DataTableFilterChipBar from "./helpers/DataTableFilterChipBar";
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
@@ -189,6 +189,9 @@ const DataTable = React.forwardRef((props, ref) => {
     for (let index = 0; index < pageSize; index += 1) {
       loadingRows.push((
         <TableRow
+          className={clsx({
+            [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
+          })}
           key={`loading-${index}`}
         >
           {flatColumns.map((column, cellIndex) => {
@@ -225,9 +228,9 @@ const DataTable = React.forwardRef((props, ref) => {
     for (let index = page.length; index < pageSize; index += 1) {
       extraRows.push((
         <TableRow
-          // className={clsx({
-          //   [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
-          // })}
+          className={clsx({
+            [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
+          })}
           key={`empty-${index}`}
         >
           {flatColumns.map((column, cellIndex) => {
@@ -251,7 +254,8 @@ const DataTable = React.forwardRef((props, ref) => {
     }
   }
 
-  console.info(activeFilters, "====activeFilters====");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleCloseDrawer = useCallback(() => setShowAdditionalFilters(false), []);
 
   return (
     <>
@@ -269,7 +273,7 @@ const DataTable = React.forwardRef((props, ref) => {
               />
               <Box paddingLeft={2}>
                 <ButtonGroup>
-                  {/* {activeFilters
+                  {activeFilters
                     .slice(0, maxFilterButtons)
                     .map((column, index) => (
                       column.render("Filter", {
@@ -280,9 +284,9 @@ const DataTable = React.forwardRef((props, ref) => {
                         }
                       })
                     ))
-                  } */}
+                  }
 
-                  {/* {hasMoreFilters && (
+                  {hasMoreFilters && (
                     FilterDrawerButtonComponent({
                       children: labels.allFilters
                     }) || (
@@ -293,7 +297,7 @@ const DataTable = React.forwardRef((props, ref) => {
                         {labels.allFilters}
                       </Button>
                     )
-                  )} */}
+                  )}
                 </ButtonGroup>
                 {hasMoreFilters && (
                   FilterDrawerComponent({
@@ -303,14 +307,14 @@ const DataTable = React.forwardRef((props, ref) => {
                     <Drawer
                       anchor="right"
                       open={shouldShowAdditionalFilters}
-                      // onClose={handleCloseDrawer}
+                      onClose={handleCloseDrawer}
                     >
                       <AppBar position="sticky">
                         <Toolbar>
                           <Box flex={1} paddingLeft={2}>
                             <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
                           </Box>
-                          <IconButton >
+                          <IconButton onClick={handleCloseDrawer}>
                             <CloseIcon />
                           </IconButton>
                         </Toolbar>
@@ -330,6 +334,14 @@ const DataTable = React.forwardRef((props, ref) => {
           )}
         </Toolbar>
       ))}
+      <DataTableFilterChipBar
+        columns={flatColumns}
+        filters={filters}
+        manualFilters={manualFilters}
+        labels={labels}
+        onRemove={onRemoveFilter}
+        onRemoveManualFilter={onRemoveManualFilter}
+      />
       <div className={classes.tableWrapper}>
         <Table ref={ref} {...getTableProps()}>
           <TableHead className={classes.tableHead}>
@@ -360,12 +372,12 @@ const DataTable = React.forwardRef((props, ref) => {
                 <TableRow
                   onClick={onRowClick && onRowClick(row)}
                   {...row.getRowProps()}
-                  // className={clsx({
-                  //   [classes.tableRowHover]: true,
-                  //   [classes.tableRowSelected]: row.isSelected,
-                  //   [classes.tableRowOdd]: !row.isSelected && ((index + 1) % 2 !== 0),
-                  //   [classes.tableRowClickable]: onRowClick
-                  // })}
+                  className={clsx({
+                    [classes.tableRowHover]: true,
+                    [classes.tableRowSelected]: row.isSelected,
+                    [classes.tableRowOdd]: !row.isSelected && ((index + 1) % 2 !== 0),
+                    [classes.tableRowClickable]: onRowClick
+                  })}
                 >
                   {row.cells.map((cell) => {
                     const { isClickDisabled, ...cellProps } = cell.getCellProps();

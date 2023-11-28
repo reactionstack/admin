@@ -4,14 +4,16 @@ import i18next from "i18next";
 import { useSnackbar } from "notistack";
 import { useDataTable } from "@reactioncommerce/catalyst/DataTable";
 
-import { makeDataTableColumnFilter } from "@reactioncommerce/catalyst/DataTableFilter";
+// import { makeDataTableColumnFilter } from "@reactioncommerce/catalyst/DataTableFilter";
 import { useApolloClient } from "@apollo/react-hooks";
 // import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId";
 import { Box, Card, CardHeader, CardContent, makeStyles } from "@material-ui/core";
+// import DataTable, { useDataTable } from "@reactioncommerce/catalyst/DataTable";
 import useCurrentShopId from "../../../../../hooks/useCurrentShopId";
 import ordersQuery from "../graphql/queries/orders";
 import { formatDateRangeFilter } from "../../client/helpers";
 import DataTable from "../../../../../dataTable/DataTable";
+import makeDataTableColumnFilter from "../components/DataTable/makeDataTableColumnFilter";
 import OrderDateCell from "./DataTable/OrderDateCell";
 import OrderIdCell from "./DataTable/OrderIdCell";
 import OrderTotalCell from "./DataTable/OrderTotalCell";
@@ -164,17 +166,17 @@ function OrdersTable() {
     history.push(`/${shopId}/orders/${row.values.referenceId}`);
   }, [history, shopId]);
 
-  const labels = useMemo(() => ({
-    "globalFilterPlaceholder": "admin.table.filter.globalFilter",
-    "filterChipValue.created": "admin.table.fulfillmentStatus.coreOrderWorkflow/created",
-    "filterChipValue.processing": "admin.table.fulfillmentStatus.coreOrderWorkflow/processing",
-    "filterChipValue.new": "admin.table.fulfillmentStatus.new",
-    "filterChipValue.completed": "admin.table.fulfillmentStatus.coreOrderWorkflow/completed",
-    "filterChipValue.canceled": "admin.table.fulfillmentStatus.coreOrderWorkflow/canceled",
-    "filterChipValue.today": "admin.table.filter.today",
-    "filterChipValue.last7": "admin.table.filter.last7",
-    "filterChipValue.last30": "admin.table.filter.last30"
-  }), []);
+  const labels = {
+    "globalFilterPlaceholder": i18next.t("admin.table.filter.globalFilter"),
+    "filterChipValue.created": i18next.t("admin.table.fulfillmentStatus.coreOrderWorkflow/created"),
+    "filterChipValue.processing": i18next.t("admin.table.fulfillmentStatus.coreOrderWorkflow/processing"),
+    "filterChipValue.new": i18next.t("admin.table.fulfillmentStatus.new"),
+    "filterChipValue.completed": i18next.t("admin.table.fulfillmentStatus.coreOrderWorkflow/completed"),
+    "filterChipValue.canceled": i18next.t("admin.table.fulfillmentStatus.coreOrderWorkflow/canceled"),
+    "filterChipValue.today": i18next.t("admin.table.filter.today"),
+    "filterChipValue.last7": i18next.t("admin.table.filter.last7"),
+    "filterChipValue.last30": i18next.t("admin.table.filter.last30")
+  };
 
   const dataTableProps = useDataTable({
     columns,
@@ -187,6 +189,11 @@ function OrdersTable() {
   });
 
   const classes = useStyles();
+
+  console.info(i18next.t("admin.table.filter.globalFilter"), "==i18next.t(admin.table.filter.globalFilter)===");
+  if (i18next.t("admin.table.filter.globalFilter") !== "Filter orders") {
+    return null;
+  }
 
   return (
     <Card className={classes.card}>
